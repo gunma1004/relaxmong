@@ -9,7 +9,7 @@ interface PageProps {
   }>;
 }
 
-// 🟢 1. 구 단위 동적 SEO 메타 태그 생성 (OG 태그 및 키워드 순서 반영)
+// 🟢 1. 구 단위 동적 SEO 메타 태그 생성 (구/시 단위 출장마사지 키워드 타깃팅)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region, district } = resolvedParams;
@@ -18,9 +18,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const districtName = regionInfo?.districts[district]?.name || "상세 지역";
   const regionName = regionInfo?.name || "수도권";
 
-  // 🎯 키워드를 맨 앞으로, 사이트명(- 수도권건마사랑)을 맨 뒤로 배치
-  const title = `${regionName} ${districtName} 출장마사지 홈타이 추천 제휴업체 - 수도권건마사랑`;
-  const description = `${regionName} ${districtName} 전지역 25분 내 신속 방문 출장마사지! 24시 연중무휴 후불제 안심 홈타이 및 마사지 제휴업체 실시간 안내.`;
+  // 🎯 검색 유입 키워드를 전면에 배치하고 사이트명을 Refresh On으로 반영
+  const title = `${regionName} ${districtName} 출장마사지 홈타이 추천 제휴업체 - Refresh On`;
+  const description = `${regionName} ${districtName} 전지역 25분 내 신속 방문 출장마사지! 24시 연중무휴 후불제 안심 홈타이 및 스웨디시 제휴업체 실시간 안내.`;
 
   return {
     title,
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       type: "website",
-      siteName: "수도권건마사랑",
+      siteName: "Refresh On",
       images: [
         {
           url: "/my-banner.png",
@@ -49,7 +49,7 @@ const shops = [
   {
     id: 1,
     name: "🔥 한국미인홈케어",
-    location: "서울·경기 전지역 (실시간 신속 방문)",
+    location: "서울·경기·인천 전지역 (실시간 신속 방문)",
     desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 테라피 & 릴렉싱 프로그램",
     phone: "0507-1280-3172",
     badge: "실시간 인기폭발",
@@ -63,7 +63,7 @@ const shops = [
   {
     id: 2,
     name: "✨ 24시미녀홈타이",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "🏆 품격 있는 힐링을 선사하는 프라이빗 방문 테라피 서비스",
     phone: "0507-1280-3126",
     badge: "만족도 최우수",
@@ -77,7 +77,7 @@ const shops = [
   {
     id: 3,
     name: "💎 젊고마인드좋은홈타이",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "⚡ 칼배송보다 빠른 방문! 철저한 위생 관리와 럭셔리 케어",
     phone: "0507-1280-3174",
     badge: "24시 상시할인",
@@ -91,7 +91,7 @@ const shops = [
   {
     id: 4,
     name: "🌟 베테랑 혼혈스웨디시",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "💯 전문 힐러들의 맞춤형 피로 회복 프로그램 진행 중",
     phone: "0507-1280-3128",
     badge: "신규 제휴할인",
@@ -105,7 +105,7 @@ const shops = [
   {
     id: 5,
     name: "👑 어린마인드홈타이",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "🚀 후불제 안심 이용! 수도권 전지역 평균 25분 내 칼같이 도착",
     phone: "0507-1280-3170",
     badge: "재방문율 99%",
@@ -137,14 +137,16 @@ export default async function DistrictPage({ params }: PageProps) {
           <Link href="/" className="flex items-center gap-3 group">
             <img 
               src="/logo.png" 
-              alt="수도권건마사랑 로고" 
+              alt="Refresh On 로고" 
               className="w-10 h-10 rounded-xl object-cover border border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.4)] group-hover:scale-105 transition-transform" 
             />
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-wider bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                수도권건마사랑
+                Refresh On
               </span>
-              <span className="text-[10px] text-gray-400 tracking-tighter">SEOUL & GYEONGGI PREMIUM</span>
+              <span className="text-[10px] text-gray-400 tracking-tighter uppercase">
+                SEOUL &middot; GYEONGGI &middot; INCHEON
+              </span>
             </div>
           </Link>
           
@@ -156,7 +158,7 @@ export default async function DistrictPage({ params }: PageProps) {
 
       <main className="max-w-4xl mx-auto px-4 py-8 w-full flex-1">
         
-        {/* 📍 구 맞춤 비주얼 배너 (수정 완료: public/my-banner.png 적용) */}
+        {/* 📍 구 맞춤 비주얼 배너 */}
         <section className="text-center my-2">
           <div className="mb-8 overflow-hidden rounded-3xl border border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] relative w-full">
             <img 
@@ -255,7 +257,7 @@ export default async function DistrictPage({ params }: PageProps) {
                     <span className="text-base">📞</span> 전화로 즉시예약
                   </a>
                   <a 
-                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${districtName} ${shop.name} 문의드립니다. (수도권건마사랑 보고 연락드렸어요)`)}`} 
+                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${districtName} ${shop.name} 문의드립니다. (Refresh On 보고 연락드렸어요)`)}`} 
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >
                     <span className="text-base">💬</span> 간편 문자상담
@@ -271,8 +273,8 @@ export default async function DistrictPage({ params }: PageProps) {
 
       <footer className="bg-[#030303] border-t border-white/10 py-10 text-center text-gray-500 text-xs mt-auto">
         <div className="max-w-4xl mx-auto px-4 space-y-3">
-          <p className="text-gray-400 font-bold">수도권건마사랑은 건전하고 안전한 제휴 마사지 정보 플랫폼입니다.</p>
-          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; 수도권건마사랑 ALL RIGHTS RESERVED.</p>
+          <p className="text-gray-400 font-bold">Refresh On은 건전하고 안전한 제휴 마사지 정보 플랫폼입니다.</p>
+          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; Refresh On ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </div>

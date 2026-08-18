@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
-// 서울·경기 전지역 데이터
-const regionData: Record<string, { name: string; districts: Record<string, { name: string; dongs: string[] }> }> = {
+// 서울·경기·인천 전지역 데이터
+const regionData: Record<
+  string,
+  { name: string; districts: Record<string, { name: string; dongs: string[] }> }
+> = {
   seoul: {
     name: "서울특별시",
     districts: {
@@ -79,6 +82,21 @@ const regionData: Record<string, { name: string; districts: Record<string, { nam
       yangpyeong: { name: "양평군", dongs: ["양평읍", "강상면", "강하면", "양서면", "옥천면", "지평면", "용문면", "개군면"] },
       yeoncheon: { name: "연천군", dongs: ["연천읍", "전곡읍", "군남면", "청산면", "백학면", "미산면", "왕징면", "신서면", "중면"] }
     }
+  },
+  incheon: {
+    name: "인천광역시",
+    districts: {
+      junggu: { name: "중구", dongs: ["연안동", "신포동", "동인천동", "북성동", "송월동", "율목동", "도원동", "영종동", "운서동", "용유동", "영종1동", "영종2동"] },
+      donggu: { name: "동구", dongs: ["만석동", "화수1.화평동", "화수2동", "송현1.2동", "송현3동", "송림1동", "송림2동", "송림3.5동", "송림4동", "송림6동", "금창동"] },
+      michuhol: { name: "미추홀구", dongs: ["숭의1.4동", "숭의2동", "숭의3동", "용현1.4동", "용현2동", "용현3동", "용현5동", "학익1동", "학익2동", "도화1동", "도화2.3동", "주안1동", "주안2동", "주안3동", "주안4동", "주안5동", "주안6동", "주안7동", "주안8동", "관교동", "문학동"] },
+      yeonsu: { name: "연수구", dongs: ["옥련1동", "옥련2동", "선학동", "연수1동", "연수2동", "연수3동", "청학동", "동춘1동", "동춘2동", "동춘3동", "송도1동", "송도2동", "송도3동", "송도4동", "송도5동"] },
+      namdong: { name: "남동구", dongs: ["구월1동", "구월2동", "구월3동", "구월4동", "간석1동", "간석2동", "간석3동", "간석4동", "만수1동", "만수2동", "만수3동", "만수4동", "만수5동", "만수6동", "장수서창동", "서창2동", "남촌도림동", "논현1동", "논현2동", "논현고잔동"] },
+      bupyeong: { name: "부평구", dongs: ["부평1동", "부평2동", "부평3동", "부평4동", "부평5동", "부평6동", "산곡1동", "산곡2동", "산곡3동", "산곡4동", "청천1동", "청천2동", "갈산1동", "갈산2동", "삼산1동", "삼산2동", "부개1동", "부개2동", "부개3동", "일신동", "십정1동", "십정2동"] },
+      gyeyang: { name: "계양구", dongs: ["효성1동", "효성2동", "계산1동", "계산2동", "계산3동", "계산4동", "작전1동", "작전2동", "작전서운동", "계양1동", "계양2동", "계양3동"] },
+      seogu: { name: "서구", dongs: ["검암경서동", "연희동", "청라1동", "청라2동", "청라3동", "가정1동", "가정2동", "가정3동", "석남1동", "석남2동", "석남3동", "신현원창동", "가좌1동", "가좌2동", "가좌3동", "가좌4동", "검단동", "불로대곡동", "원당동", "당하동", "오류왕길동", "마전동", "아라동"] },
+      ganghwa: { name: "강화군", dongs: ["강화읍", "선원면", "불은면", "길상면", "화도면", "양도면", "내가면", "하점면", "양사면", "송해면", "교동면", "삼산면", "서도면"] },
+      ongjin: { name: "옹진군", dongs: ["북도면", "백령면", "대청면", "덕적면", "자월면", "영흥면", "연평면"] }
+    }
   }
 };
 
@@ -86,7 +104,7 @@ const shops = [
   {
     id: 1,
     name: "🔥 24시미녀홈타이",
-    location: "서울·경기 전지역 (실시간 신속 방문)",
+    location: "서울·경기·인천 전지역 (실시간 신속 방문)",
     desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 테라피 & 릴렉싱 프로그램",
     phone: "0507-1280-3126",
     badge: "실시간 인기폭발",
@@ -100,7 +118,7 @@ const shops = [
   {
     id: 2,
     name: "✨달달한국인홈케어",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "🏆 품격 있는 힐링을 선사하는 프라이빗 방문 테라피 서비스",
     phone: "0507-1280-3172",
     badge: "만족도 최우수",
@@ -114,7 +132,7 @@ const shops = [
   {
     id: 3,
     name: "💎 젊고마인드좋은홈타이",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "⚡ 칼배송보다 빠른 방문! 철저한 위생 관리와 럭셔리 케어",
     phone: "0507-1280-3174",
     badge: "24시 상시할인",
@@ -128,7 +146,7 @@ const shops = [
   {
     id: 4,
     name: "🌟 베테랑 혼혈스웨디시",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "💯 전문 힐러들의 맞춤형 피로 회복 프로그램 진행 중",
     phone: "0507-1280-3128",
     badge: "신규 제휴할인",
@@ -142,7 +160,7 @@ const shops = [
   {
     id: 5,
     name: "👑 어린마인드홈타이",
-    location: "서울·경기 전지역",
+    location: "서울·경기·인천 전지역",
     desc: "🚀 후불제 안심 이용! 수도권 전지역 평균 25분 내 칼같이 도착",
     phone: "0507-1280-3170",
     badge: "재방문율 99%",
@@ -173,7 +191,7 @@ export default function MainClientUI() {
 
   const handleSearch = () => {
     if (!selectedDistrict) {
-      alert("원하시는 지역(구/시)을 먼저 선택해주세요!");
+      alert("원하시는 지역(구/시/군)을 먼저 선택해주세요!");
       return;
     }
     const targetUrl = selectedDong
@@ -183,25 +201,28 @@ export default function MainClientUI() {
   };
 
   const currentDistricts = regionData[selectedRegion]?.districts || {};
-  const currentDongs = selectedDistrict && currentDistricts[selectedDistrict] ? currentDistricts[selectedDistrict].dongs : [];
+  const currentDongs =
+    selectedDistrict && currentDistricts[selectedDistrict]
+      ? currentDistricts[selectedDistrict].dongs
+      : [];
 
   return (
     <div className="bg-[#050505] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-black">
       
-      {/* 상단 네온 헤더 */}
+      {/* 상단 헤더 */}
       <header className="sticky top-0 z-50 bg-[#050505]/85 backdrop-blur-xl border-b border-amber-500/20 px-4 py-3.5 shadow-[0_4px_20px_rgba(245,158,11,0.1)]">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <a href="/" className="flex items-center gap-3 group">
             <img 
               src="/logo.png" 
-              alt="수도권건마사랑 로고" 
+              alt="Refresh On 로고" 
               className="w-10 h-10 rounded-xl object-cover border border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.4)] group-hover:scale-105 transition-transform" 
             />
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-wider bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                수도권건마사랑
+                Refresh On
               </span>
-              <span className="text-[10px] text-gray-400 tracking-tighter">SEOUL & GYEONGGI PREMIUM</span>
+              <span className="text-[10px] text-gray-400 tracking-tighter uppercase">SEOUL &middot; GYEONGGI &middot; INCHEON</span>
             </div>
           </a>
           
@@ -219,12 +240,12 @@ export default function MainClientUI() {
 
       <main className="max-w-4xl mx-auto px-4 py-8 w-full flex-1">
         
-        {/* 📍 메인 비주얼 배너 (수정 완료: public/my-banner.png 적용) */}
+        {/* 메인 배너 */}
         <section className="text-center my-2">
           <div className="mb-8 overflow-hidden rounded-3xl border border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] relative w-full">
             <img 
               src="/my-banner.png" 
-              alt="수도권건마사랑 메인 배너" 
+              alt="Refresh On 메인 배너" 
               className="w-full h-auto object-cover block"
             />
           </div>
@@ -238,7 +259,7 @@ export default function MainClientUI() {
                 📍 내 주변 맞춤 제휴업체 찾기
               </label>
               <span className="text-[11px] text-gray-400 bg-black/40 px-2.5 py-1 rounded-lg border border-white/5">
-                실시간 120개 샵 대기중
+                수도권 전지역 실시간 대기중
               </span>
             </div>
 
@@ -313,8 +334,10 @@ export default function MainClientUI() {
           </div>
 
           {shops.map((shop) => (
-            <article key={shop.id} className="bg-gradient-to-b from-[#141416] to-[#0d0d0f] border border-amber-500/20 hover:border-amber-500/60 transition-all duration-300 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative group">
-              
+            <article 
+              key={shop.id} 
+              className="bg-gradient-to-b from-[#141416] to-[#0d0d0f] border border-amber-500/20 hover:border-amber-500/60 transition-all duration-300 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.5)] relative group"
+            >
               <div className="relative h-48 md:h-56 w-full overflow-hidden">
                 <img 
                   src={shop.image} 
@@ -351,7 +374,11 @@ export default function MainClientUI() {
                   {shop.courses.map((course, idx) => (
                     <div key={idx} className="flex justify-between text-xs md:text-sm items-center py-1.5 border-b border-white/5 last:border-0">
                       <span className="text-gray-200 flex items-center gap-2 font-medium">
-                        {course.best && <span className="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded font-black">BEST</span>}
+                        {course.best && (
+                          <span className="text-xs bg-red-500 text-white px-1.5 py-0.5 rounded font-black">
+                            BEST
+                          </span>
+                        )}
                         {course.name}
                       </span>
                       <span className="font-extrabold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-lg border border-amber-500/20">
@@ -369,24 +396,24 @@ export default function MainClientUI() {
                     <span className="text-base">📞</span> 전화로 즉시예약
                   </a>
                   <a 
-                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${shop.name} 문의드립니다. (수도권건마사랑 보고 연락드렸어요)`)}`} 
+                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${shop.name} 문의드립니다. (Refresh On 보고 연락드렸어요)`)}`} 
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >
                     <span className="text-base">💬</span> 간편 문자상담
                   </a>
                 </div>
               </div>
-
             </article>
           ))}
         </section>
 
       </main>
 
+      {/* 하단 푸터 */}
       <footer className="bg-[#030303] border-t border-white/10 py-10 text-center text-gray-500 text-xs mt-auto">
         <div className="max-w-4xl mx-auto px-4 space-y-3">
-          <p className="text-gray-400 font-bold">수도권건마사랑은 건전하고 안전한 제휴 마사지 정보 플랫폼입니다.</p>
-          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; 수도권건마사랑 ALL RIGHTS RESERVED.</p>
+          <p className="text-gray-400 font-bold">Refresh On은 건전하고 안전한 제휴 마사지 정보 플랫폼입니다.</p>
+          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; Refresh On ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </div>
