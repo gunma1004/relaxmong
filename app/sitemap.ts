@@ -2,8 +2,7 @@ import { MetadataRoute } from 'next';
 import { regionData } from './data/regions';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 💡 실제 사용할 도메인 주소로 변경해주세요 (예: https://refresh-on.com)
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://refresh-on.com';
+  const baseUrl = 'https://refresh-on.netlify.app';
   const currentDate = new Date();
 
   // 1. 메인 페이지
@@ -21,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const districts = regionData[regionKey].districts;
 
     Object.keys(districts).forEach((districtKey) => {
-      // 2-1. 구/시/군 단위 페이지 (예: /seoul/gangnam, /incheon/bupyeong)
+      // 2-1. 구/시/군 단위 페이지
       routes.push({
         url: `${baseUrl}/${regionKey}/${districtKey}`,
         lastModified: currentDate,
@@ -29,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
       });
 
-      // 2-2. 세부 동 단위 페이지 (예: /seoul/gangnam/역삼1동)
+      // 2-2. 세부 동 단위 페이지
       const dongs = districts[districtKey].dongs || [];
       dongs.forEach((dong) => {
         routes.push({

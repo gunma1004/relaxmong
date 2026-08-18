@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sudokwon-massage.shop/sitemap.xml
+Sitemap: https://refresh-on.netlify.app/sitemap.xml
