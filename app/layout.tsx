@@ -1,4 +1,4 @@
-import "./globals.css"; //
+import "./globals.css";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -20,6 +20,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // 🟢 네이버 서치어드바이저 소유확인 메타 태그
+  verification: {
+    other: {
+      'naver-site-verification': 'c411e98ebb70dd1c9e68dd71f421217eb247f4d7',
+    },
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body className="bg-[#050505] text-white min-h-screen">{children}</body>
     </html>
   );
 }
