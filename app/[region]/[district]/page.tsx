@@ -9,7 +9,7 @@ interface PageProps {
   }>;
 }
 
-// 🟢 1. 구/시 단위 동적 SEO 메타 태그 생성 (구/시 단위 '출장마사지' 키워드 타깃팅)
+// 🟢 1. 구/시 단위 7개 템플릿 순환 동적 SEO 메타 태그 생성
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region, district } = resolvedParams;
@@ -18,9 +18,44 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const districtName = regionInfo?.districts[district]?.name || "상세 지역";
   const regionName = regionInfo?.name || "수도권";
 
-  // 🎯 검색 유입용 [지역명 + 구/시 + 출장마사지] 키워드 필수 반영
-  const title = `${regionName} ${districtName} 출장마사지 홈타이 추천 제휴업체 - 릴렉스몽`;
-  const description = `${regionName} ${districtName} 전지역 30분 내 신속 방문 출장마사지! 24시 연중무휴 100% 후불 정찰제 안심 홈타이 및 스웨디시 제휴업체 실시간 안내.`;
+  // 문자열 해시 기반 7개 템플릿 균등 분기 알고리즘
+  const hash = (district + region).split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const seed = hash % 7;
+
+  let title = "";
+  let description = "";
+
+  switch (seed) {
+    case 0:
+      title = `${districtName} 출장마사지 추천 제휴업체 순위 | 릴렉스몽`;
+      description = `${regionName} ${districtName} 전지역 30분 도착 보장! 릴렉스몽에서 검증된 1:1 프라이빗 출장마사지 및 100% 현장 후불제 테라피 샵을 확인하세요.`;
+      break;
+    case 1:
+      title = `${districtName} 출장마사지 홈타이·스웨디시 24시 할인 - 릴렉스몽`;
+      description = `${districtName} 출장마사지 전문 힐러 실시간 대기. 타이·아로마·스웨디시 맞춤 힐링 코스 및 24시간 안심 후불 예약 제휴점 안내.`;
+      break;
+    case 2:
+      title = `${regionName} ${districtName} 출장마사지 베스트 힐링 케어 | 릴렉스몽`;
+      description = `${districtName} 전구역 어디든 빠른 방문! 스트레스와 피로를 완벽하게 풀어주는 ${districtName} 출장마사지 만족도 1위 제휴업체 정보.`;
+      break;
+    case 3:
+      title = `${districtName} 출장마사지 1:1 맞춤 프리미엄 홈케어 [릴렉스몽]`;
+      description = `${regionName} ${districtName} 전역 24시 신속 방문 출장마사지. 내 공간에서 편안하게 즐기는 최고급 바디케어 코스를 실시간 확인해보세요.`;
+      break;
+    case 4:
+      title = `${districtName} 출장마사지 타이·아로마 24시 후불 예약 - 릴렉스몽`;
+      description = `${districtName} 출장마사지 안심 예약 플랫폼! 100% 후불 정찰제와 베테랑 테라피스트의 프라이빗 힐링 서비스를 제공합니다.`;
+      break;
+    case 5:
+      title = `${districtName} 출장마사지 만족도 1위 프라이빗 테라피 | 릴렉스몽`;
+      description = `${regionName} ${districtName} 고객 만족도 최우수 출장마사지 제휴점 안내. 건식 타이부터 스웨디시까지 맞춤형 힐링을 지금 예약하세요.`;
+      break;
+    case 6:
+    default:
+      title = `${districtName} 출장마사지 실시간 예약 제휴점 가이드 | 릴렉스몽`;
+      description = `${districtName} 전지역 30분 도착! 릴렉스몽이 엄선한 ${districtName} 출장마사지 베스트 업체의 대표 코스 및 요금 정보를 안내합니다.`;
+      break;
+  }
 
   return {
     title,
@@ -51,7 +86,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// 교체된 5개 제휴 업체 데이터
+// 🎯 제휴 업체 데이터
 const shops = [
   {
     id: 1,
