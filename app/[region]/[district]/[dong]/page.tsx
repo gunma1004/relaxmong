@@ -10,7 +10,7 @@ interface PageProps {
   }>;
 }
 
-// 🟢 1. 동 동적 SEO 메타 태그 생성 (동 단위 출장마사지 키워드 타깃팅)
+// 🟢 1. 동 동적 SEO 메타 태그 생성 (동 단위 '출장마사지' 키워드 필수 타깃팅)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region, district, dong } = resolvedParams;
@@ -20,17 +20,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const districtName = regionInfo?.districts[district]?.name || district;
   const regionName = regionInfo?.name || "수도권";
 
-  const title = `${districtName} ${decodedDong} 출장마사지 홈타이 추천 제휴업체 - Refresh On`;
-  const description = `${regionName} ${districtName} ${decodedDong} 전지역 25분 내 신속 방문 출장마사지! 24시 연중무휴 후불제 안심 홈타이, 스웨디시 제휴업체 실시간 안내.`;
+  // 🎯 검색 유입용 [지역명 + 구/시 + 동 + 출장마사지] 키워드 최적화
+  const title = `${districtName} ${decodedDong} 출장마사지 홈타이 추천 제휴업체 - 릴렉스몽`;
+  const description = `${regionName} ${districtName} ${decodedDong} 전지역 30분 내 신속 방문 출장마사지! 24시 연중무휴 100% 후불 정찰제 안심 홈타이, 스웨디시 제휴업체 실시간 안내.`;
 
   return {
     title,
     description,
+    keywords: [
+      `${districtName} ${decodedDong} 출장마사지`,
+      `${decodedDong} 출장마사지`,
+      `${decodedDong} 홈타이`,
+      `${decodedDong} 스웨디시`,
+      "릴렉스몽",
+    ],
     openGraph: {
       title,
       description,
       type: "website",
-      siteName: "Refresh On",
+      siteName: "릴렉스몽",
       images: [
         {
           url: "/my-banner.png",
@@ -45,14 +53,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// 🎯 제휴 업체 데이터 (구/동 페이지 공통 공유 데이터)
+// 교체된 5개 제휴 업체 데이터
 const shops = [
   {
     id: 1,
-    name: "🔥 한국미인홈케어",
+    name: "🔥 한국골든테라피",
     location: "서울·경기·인천 전지역 (실시간 신속 방문)",
-    desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 테라피 & 릴렉싱 프로그램",
-    phone: "0507-1280-3172",
+    desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 프리미엄 1:1 홈힐링 테라피",
+    phone: "0507-1280-3361",
     badge: "실시간 인기폭발",
     badgeColor: "bg-red-500 text-white animate-pulse",
     image: "/shop1.jpg",
@@ -63,10 +71,10 @@ const shops = [
   },
   {
     id: 2,
-    name: "✨ 24시미녀홈타이",
+    name: "✨ 한국미인테라피",
     location: "서울·경기·인천 전지역",
-    desc: "🏆 품격 있는 힐링을 선사하는 프라이빗 방문 테라피 서비스",
-    phone: "0507-1280-3126",
+    desc: "🏆 품격 있는 힐링을 선사하는 최고급 프라이빗 1:1 맞춤형 방문 테라피",
+    phone: "0507-1280-3288",
     badge: "만족도 최우수",
     badgeColor: "bg-amber-500 text-black",
     image: "/shop2.jpg",
@@ -77,10 +85,10 @@ const shops = [
   },
   {
     id: 3,
-    name: "💎 젊고마인드좋은홈타이",
+    name: "💎 주주테라피",
     location: "서울·경기·인천 전지역",
-    desc: "⚡ 칼배송보다 빠른 방문! 철저한 위생 관리와 럭셔리 케어",
-    phone: "0507-1280-3174",
+    desc: "⚡ 철저한 위생 관리와 럭셔리 힐링 케어로 완성하는 일상의 완벽한 휴식",
+    phone: "0507-1280-3180",
     badge: "24시 상시할인",
     badgeColor: "bg-purple-600 text-white",
     image: "/shop3.jpg",
@@ -91,10 +99,10 @@ const shops = [
   },
   {
     id: 4,
-    name: "🌟 베테랑 혼혈스웨디시",
+    name: "🌟 퀸즈홈테라피",
     location: "서울·경기·인천 전지역",
-    desc: "💯 전문 힐러들의 맞춤형 피로 회복 프로그램 진행 중",
-    phone: "0507-1280-3128",
+    desc: "💯 전문 테라피스트들의 체계적이고 세심한 1:1 맞춤 피로 회복 프로그램",
+    phone: "0507-1280-3228",
     badge: "신규 제휴할인",
     badgeColor: "bg-blue-600 text-white",
     image: "/shop4.jpg",
@@ -105,10 +113,10 @@ const shops = [
   },
   {
     id: 5,
-    name: "👑 어린마인드홈타이",
+    name: "👑 24시미녀테라피",
     location: "서울·경기·인천 전지역",
-    desc: "🚀 후불제 안심 이용! 수도권 전지역 평균 25분 내 칼같이 도착",
-    phone: "0507-1280-3170",
+    desc: "🚀 100% 현장 후불 정찰제! 수도권 전지역 평균 30분 내 신속 방문 보장",
+    phone: "0507-1280-3183",
     badge: "재방문율 99%",
     badgeColor: "bg-emerald-500 text-black",
     image: "/shop5.jpg",
@@ -136,15 +144,15 @@ export default async function DongPage({ params }: PageProps) {
           <Link href="/" className="flex items-center gap-3 group">
             <img
               src="/logo.png"
-              alt="Refresh On 로고"
+              alt="릴렉스몽 로고"
               className="w-10 h-10 rounded-xl object-cover border border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.4)] group-hover:scale-105 transition-transform"
             />
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-wider bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                Refresh On
+                릴렉스몽
               </span>
               <span className="text-[10px] text-gray-400 tracking-tighter uppercase">
-                SEOUL &middot; GYEONGGI &middot; INCHEON
+                RELAXMONG &middot; SEOUL &middot; GYEONGGI &middot; INCHEON
               </span>
             </div>
           </Link>
@@ -164,7 +172,7 @@ export default async function DongPage({ params }: PageProps) {
           <div className="mb-8 overflow-hidden rounded-3xl border border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] relative w-full">
             <img
               src="/my-banner.png"
-              alt={`${districtName} ${decodedDong} 메인 배너`}
+              alt={`${districtName} ${decodedDong} 출장마사지 메인 배너`}
               className="w-full h-auto object-cover block"
             />
           </div>
@@ -174,11 +182,11 @@ export default async function DongPage({ params }: PageProps) {
         <section className="space-y-6">
           <div className="flex justify-between items-end mb-4 px-2">
             <div>
-              <h2 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                <span>🔥</span> {districtName} {decodedDong} 추천 제휴업체 리스트
-              </h2>
+              <h1 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+                <span>🔥</span> {districtName} {decodedDong} 출장마사지 추천 제휴업체
+              </h1>
               <p className="text-xs text-gray-400 mt-1">
-                {decodedDong} 전지역 즉시 방문 가능한 검증된 프리미엄 샵입니다.
+                {decodedDong} 전지역 30분 도착 가능한 100% 후불 정찰제 프리미엄 샵입니다.
               </p>
             </div>
           </div>
@@ -191,7 +199,7 @@ export default async function DongPage({ params }: PageProps) {
               <div className="relative h-48 md:h-56 w-full overflow-hidden">
                 <img
                   src={shop.image}
-                  alt={shop.name}
+                  alt={`${decodedDong} ${shop.name}`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#141416] via-transparent to-black/30"></div>
@@ -208,7 +216,7 @@ export default async function DongPage({ params }: PageProps) {
               <div className="p-6 md:p-7 -mt-6 relative z-10">
                 <div className="mb-2">
                   <span className="text-xs text-amber-400/90 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
-                    📍 {districtName} {decodedDong} 전지역 신속 방문
+                    📍 {districtName} {decodedDong} 전지역 신속 방문 출장마사지
                   </span>
                 </div>
 
@@ -252,7 +260,7 @@ export default async function DongPage({ params }: PageProps) {
                   </a>
                   <a
                     href={`sms:${shop.phone}?body=${encodeURIComponent(
-                      `${districtName} ${decodedDong} ${shop.name} 문의드립니다. (Refresh On 보고 연락드렸어요)`
+                      `${districtName} ${decodedDong} ${shop.name} 출장마사지 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`
                     )}`}
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >
@@ -267,8 +275,8 @@ export default async function DongPage({ params }: PageProps) {
 
       <footer className="bg-[#030303] border-t border-white/10 py-10 text-center text-gray-500 text-xs mt-auto">
         <div className="max-w-4xl mx-auto px-4 space-y-3">
-          <p className="text-gray-400 font-bold">Refresh On은 건전하고 안전한 제휴 마사지 정보 플랫폼입니다.</p>
-          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; Refresh On ALL RIGHTS RESERVED.</p>
+          <p className="text-gray-400 font-bold">릴렉스몽은 건전하고 안전한 1:1 방문 홈케어 정보 플랫폼입니다.</p>
+          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; RELAXMONG ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </div>

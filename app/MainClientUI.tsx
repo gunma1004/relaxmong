@@ -103,10 +103,10 @@ const regionData: Record<
 const shops = [
   {
     id: 1,
-    name: "🔥 24시미녀홈타이",
+    name: "🔥 한국골든테라피",
     location: "서울·경기·인천 전지역 (실시간 신속 방문)",
-    desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 테라피 & 릴렉싱 프로그램",
-    phone: "0507-1280-3126",
+    desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 프리미엄 1:1 홈힐링 테라피",
+    phone: "0507-1280-3361",
     badge: "실시간 인기폭발",
     badgeColor: "bg-red-500 text-white animate-pulse",
     image: "/shop1.jpg",
@@ -117,10 +117,10 @@ const shops = [
   },
   {
     id: 2,
-    name: "✨달달한국인홈케어",
+    name: "✨ 한국미인테라피",
     location: "서울·경기·인천 전지역",
-    desc: "🏆 품격 있는 힐링을 선사하는 프라이빗 방문 테라피 서비스",
-    phone: "0507-1280-3172",
+    desc: "🏆 품격 있는 힐링을 선사하는 최고급 프라이빗 1:1 맞춤형 방문 테라피",
+    phone: "0507-1280-3288",
     badge: "만족도 최우수",
     badgeColor: "bg-amber-500 text-black",
     image: "/shop2.jpg",
@@ -131,10 +131,10 @@ const shops = [
   },
   {
     id: 3,
-    name: "💎 젊고마인드좋은홈타이",
+    name: "💎 주주테라피",
     location: "서울·경기·인천 전지역",
-    desc: "⚡ 칼배송보다 빠른 방문! 철저한 위생 관리와 럭셔리 케어",
-    phone: "0507-1280-3174",
+    desc: "⚡ 철저한 위생 관리와 럭셔리 힐링 케어로 완성하는 일상의 완벽한 휴식",
+    phone: "0507-1280-3180",
     badge: "24시 상시할인",
     badgeColor: "bg-purple-600 text-white",
     image: "/shop3.jpg",
@@ -145,10 +145,10 @@ const shops = [
   },
   {
     id: 4,
-    name: "🌟 베테랑 혼혈스웨디시",
+    name: "🌟 퀸즈홈테라피",
     location: "서울·경기·인천 전지역",
-    desc: "💯 전문 힐러들의 맞춤형 피로 회복 프로그램 진행 중",
-    phone: "0507-1280-3128",
+    desc: "💯 전문 테라피스트들의 체계적이고 세심한 1:1 맞춤 피로 회복 프로그램",
+    phone: "0507-1280-3228",
     badge: "신규 제휴할인",
     badgeColor: "bg-blue-600 text-white",
     image: "/shop4.jpg",
@@ -159,10 +159,10 @@ const shops = [
   },
   {
     id: 5,
-    name: "👑 어린마인드홈타이",
+    name: "👑 24시미녀테라피",
     location: "서울·경기·인천 전지역",
-    desc: "🚀 후불제 안심 이용! 수도권 전지역 평균 25분 내 칼같이 도착",
-    phone: "0507-1280-3170",
+    desc: "🚀 100% 현장 후불 정찰제! 수도권 전지역 평균 30분 내 신속 방문 보장",
+    phone: "0507-1280-3183",
     badge: "재방문율 99%",
     badgeColor: "bg-emerald-500 text-black",
     image: "/shop5.jpg",
@@ -215,14 +215,14 @@ export default function MainClientUI() {
           <a href="/" className="flex items-center gap-3 group">
             <img 
               src="/logo.png" 
-              alt="Refresh On 로고" 
+              alt="릴렉스몽 로고" 
               className="w-10 h-10 rounded-xl object-cover border border-amber-500/40 shadow-[0_0_12px_rgba(245,158,11,0.4)] group-hover:scale-105 transition-transform" 
             />
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-wider bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
-                Refresh On
+                릴렉스몽
               </span>
-              <span className="text-[10px] text-gray-400 tracking-tighter uppercase">SEOUL &middot; GYEONGGI &middot; INCHEON</span>
+              <span className="text-[10px] text-gray-400 tracking-tighter uppercase">RELAXMONG &middot; SEOUL &middot; GYEONGGI &middot; INCHEON</span>
             </div>
           </a>
           
@@ -232,7 +232,7 @@ export default function MainClientUI() {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
             </span>
             <span className="text-xs px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-red-500/20 text-amber-300 border border-amber-500/30 font-bold shadow-inner">
-              🔥 24시 실시간 영업중
+              🔥 24시 실시간 예약접수
             </span>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function MainClientUI() {
           <div className="mb-8 overflow-hidden rounded-3xl border border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] relative w-full">
             <img 
               src="/my-banner.png" 
-              alt="Refresh On 메인 배너" 
+              alt="릴렉스몽 메인 배너" 
               className="w-full h-auto object-cover block"
             />
           </div>
@@ -329,7 +329,7 @@ export default function MainClientUI() {
               <h2 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
                 <span>🏆</span> 실시간 베스트 추천 제휴업체
               </h2>
-              <p className="text-xs text-gray-400 mt-1">고객 만족도 및 재방문율이 가장 검증된 프리미엄 샵입니다.</p>
+              <p className="text-xs text-gray-400 mt-1">고객 만족도 및 재방문율이 가장 검증된 프리미엄 홈케어 샵입니다.</p>
             </div>
           </div>
 
@@ -396,7 +396,7 @@ export default function MainClientUI() {
                     <span className="text-base">📞</span> 전화로 즉시예약
                   </a>
                   <a 
-                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${shop.name} 문의드립니다. (Refresh On 보고 연락드렸어요)`)}`} 
+                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${shop.name} 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`)}`} 
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >
                     <span className="text-base">💬</span> 간편 문자상담
@@ -412,8 +412,8 @@ export default function MainClientUI() {
       {/* 하단 푸터 */}
       <footer className="bg-[#030303] border-t border-white/10 py-10 text-center text-gray-500 text-xs mt-auto">
         <div className="max-w-4xl mx-auto px-4 space-y-3">
-          <p className="text-gray-400 font-bold">Refresh On은 건전하고 안전한 제휴 마사지 정보 플랫폼입니다.</p>
-          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; Refresh On ALL RIGHTS RESERVED.</p>
+          <p className="text-gray-400 font-bold">릴렉스몽은 건전하고 안전한 1:1 방문 홈케어 정보 플랫폼입니다.</p>
+          <p className="text-[11px] text-gray-600">COPYRIGHT &copy; RELAXMONG ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
     </div>

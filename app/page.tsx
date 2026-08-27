@@ -1,29 +1,19 @@
-// 📍 app/page.tsx (서버 컴포넌트)
-import type { Metadata } from "next";
-import MainClientUI from "./MainClientUI";
+import type { Metadata } from 'next';
 
-// 🟢 1. 메인 페이지 정적 SEO 메타데이터 ('출장마사지' 키워드 제외 및 홈케어/테라피 중심)
 export const metadata: Metadata = {
-  title: "Refresh On (리프레시온) - 서울·경기·인천 24시 프리미엄 홈케어 & 테라피 제휴 정보",
-  description: "서울, 경기, 인천 수도권 전지역 25분 내 신속 방문! 24시 연중무휴 후불제 안심 홈타이, 스웨디시, 아로마 힐링 케어 제휴업체 정보 안내.",
-  openGraph: {
-    title: "Refresh On (리프레시온) - 서울·경기·인천 24시 프리미엄 홈케어 & 테라피 제휴 정보",
-    description: "서울, 경기, 인천 수도권 전지역 25분 내 신속 방문! 24시 연중무휴 후불제 안심 홈타이, 스웨디시, 아로마 힐링 케어 제휴업체 정보 안내.",
-    type: "website",
-    siteName: "Refresh On",
-    images: [
-      {
-        url: "/my-banner.png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Refresh On (리프레시온) - 서울·경기·인천 24시 프리미엄 홈케어 & 테라피 제휴 정보",
-    description: "서울, 경기, 인천 수도권 전지역 25분 내 신속 방문! 24시 연중무휴 후불제 안심 홈타이, 스웨디시, 아로마 힐링 케어 제휴업체 정보 안내.",
+  title: '릴렉스몽 | 서울·경기·인천 프리미엄 1:1 방문 홈타이 힐링 테라피',
+  description: '릴렉스몽 공식 홈케어. 서울·경기·인천 전 구역 30분 내 도착, 100% 현장 정찰제 결제와 프라이빗 1:1 맞춤 바디 테라피를 제공합니다.',
+  keywords: ['릴렉스몽', '홈케어', '방문테라피', '스웨디시', '타이테라피', '아로마케어', '힐링테라피'],
+  alternates: {
+    canonical: 'https://relaxmong.netlify.app',
   },
 };
 
-export default function MainPage() {
-  return <MainClientUI />;
+export default function HomePage() {
+  return (
+    <main>
+      <h1>릴렉스몽 프리미엄 홈케어</h1>
+      {/* 메인 페이지 컨텐츠 */}
+    </main>
+  );
 }
