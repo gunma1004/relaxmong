@@ -10,7 +10,7 @@ interface PageProps {
   }>;
 }
 
-// 🟢 1. 동 단위 7개 템플릿 순환 동적 SEO 메타 태그 생성
+// 🟢 1. 동 단위 7개 템플릿 순환 동적 SEO 메타 태그 생성 (출장 + [중간단어] + 마사지 분리 패턴)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region, district, dong } = resolvedParams;
@@ -29,33 +29,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   switch (seed) {
     case 0:
-      title = `${decodedDong} 출장마사지 24시 신속방문 제휴안내 | 릴렉스몽`;
-      description = `${districtName} ${decodedDong} 출장마사지 실시간 예약. 30분 내 빠른 도착과 100% 현장 후불 정찰제로 편안한 홈타이·스웨디시를 경험하세요.`;
+      title = `${decodedDong} 출장 힐링 마사지 24시 신속방문 제휴안내 | 릴렉스몽`;
+      description = `${districtName} ${decodedDong} 출장 힐링 마사지 실시간 예약. 30분 내 빠른 도착과 100% 현장 후불 정찰제로 편안한 홈타이·스웨디시를 경험하세요.`;
       break;
     case 1:
-      title = `${districtName} ${decodedDong} 출장마사지 홈케어 추천 - 릴렉스몽`;
-      description = `${decodedDong} 전지역 어디서나 부르는 프라이빗 출장마사지! 지친 일상에 활력을 더하는 1:1 맞춤 힐링 테라피 코스를 안내해드립니다.`;
+      title = `${districtName} ${decodedDong} 출장 타이 마사지 홈케어 추천 - 릴렉스몽`;
+      description = `${decodedDong} 전지역 어디서나 부르는 프라이빗 출장 타이 마사지! 지친 일상에 활력을 더하는 1:1 맞춤 힐링 테라피 코스를 안내해드립니다.`;
       break;
     case 2:
-      title = `${decodedDong} 출장마사지 타이·아로마 힐링 케어 | 릴렉스몽`;
-      description = `${regionName} ${districtName} ${decodedDong} 인근 전문 테라피스트 항시 대기. 내 공간에서 편하게 받는 안심 후불제 출장마사지 서비스.`;
+      title = `${decodedDong} 출장 아로마 마사지 타이·아로마 힐링 케어 | 릴렉스몽`;
+      description = `${regionName} ${districtName} ${decodedDong} 인근 전문 테라피스트 항시 대기. 내 공간에서 편하게 받는 안심 후불제 출장 아로마 마사지 서비스.`;
       break;
     case 3:
-      title = `${decodedDong} 출장마사지 스웨디시 제휴업체 정보 [릴렉스몽]`;
-      description = `${decodedDong} 출장마사지 고객 만족도 최우수 샵 추천! 24시간 연중무휴 신속 방문 서비스로 수준 높은 바디케어를 제공합니다.`;
+      title = `${decodedDong} 출장 스웨디시 마사지 제휴업체 정보 [릴렉스몽]`;
+      description = `${decodedDong} 출장 스웨디시 마사지 고객 만족도 최우수 샵 추천! 24시간 연중무휴 신속 방문 서비스로 수준 높은 바디케어를 제공합니다.`;
       break;
     case 4:
-      title = `${decodedDong} 출장마사지 1:1 방문 홈타이 예약 - 릴렉스몽`;
-      description = `${districtName} ${decodedDong} 전구역 30분 도착 보장. 철저한 위생 관리와 정찰제 요금으로 신뢰받는 출장마사지 베스트 제휴점 모음.`;
+      title = `${decodedDong} 출장 홈타이 마사지 1:1 방문 홈타이 예약 - 릴렉스몽`;
+      description = `${districtName} ${decodedDong} 전구역 30분 도착 보장. 철저한 위생 관리와 정찰제 요금으로 신뢰받는 출장 홈타이 마사지 베스트 제휴점 모음.`;
       break;
     case 5:
-      title = `${decodedDong} 출장마사지 안심 후불제 테라피 추천 | 릴렉스몽`;
-      description = `${decodedDong} 힐링 테라피 전문 힐러 실시간 배차! 건식 타이부터 프리미엄 스웨디시까지 맞춤형 출장마사지를 지금 확인하세요.`;
+      title = `${decodedDong} 출장 릴렉스 마사지 안심 후불제 테라피 추천 | 릴렉스몽`;
+      description = `${decodedDong} 힐링 테라피 전문 힐러 실시간 배차! 건식 타이부터 프리미엄 스웨디시까지 맞춤형 출장 릴렉스 마사지를 지금 확인하세요.`;
       break;
     case 6:
     default:
-      title = `${districtName} ${decodedDong} 출장마사지 베스트 제휴점 가이드 | 릴렉스몽`;
-      description = `${regionName} ${districtName} ${decodedDong} 출장마사지 24시 상시 상담. 피로 회복을 위한 최고급 1:1 홈케어 코스 및 요금 안내.`;
+      title = `${districtName} ${decodedDong} 출장 홈케어 마사지 베스트 제휴점 가이드 | 릴렉스몽`;
+      description = `${regionName} ${districtName} ${decodedDong} 출장 홈케어 마사지 24시 상시 상담. 피로 회복을 위한 최고급 1:1 홈케어 코스 및 요금 안내.`;
       break;
   }
 
@@ -63,10 +63,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     keywords: [
-      `${districtName} ${decodedDong} 출장마사지`,
-      `${decodedDong} 출장마사지`,
-      `${decodedDong} 홈타이`,
-      `${decodedDong} 스웨디시`,
+      `${districtName} ${decodedDong} 출장 힐링 마사지`,
+      `${decodedDong} 출장 힐링 마사지`,
+      `${decodedDong} 출장 타이 마사지`,
+      `${decodedDong} 출장 스웨디시 마사지`,
+      `${decodedDong} 출장 아로마 마사지`,
+      `${decodedDong} 출장 홈케어 마사지`,
       "릴렉스몽",
     ],
     openGraph: {
@@ -207,7 +209,7 @@ export default async function DongPage({ params }: PageProps) {
           <div className="mb-8 overflow-hidden rounded-3xl border border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] relative w-full">
             <img
               src="/my-banner.png"
-              alt={`${districtName} ${decodedDong} 출장마사지 메인 배너`}
+              alt={`${districtName} ${decodedDong} 출장 힐링 마사지 메인 배너`}
               className="w-full h-auto object-cover block"
             />
           </div>
@@ -218,7 +220,7 @@ export default async function DongPage({ params }: PageProps) {
           <div className="flex justify-between items-end mb-4 px-2">
             <div>
               <h1 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                <span>🔥</span> {districtName} {decodedDong} 출장마사지 추천 제휴업체
+                <span>🔥</span> {districtName} {decodedDong} 출장 힐링 마사지 추천 제휴업체
               </h1>
               <p className="text-xs text-gray-400 mt-1">
                 {decodedDong} 전지역 30분 도착 가능한 100% 후불 정찰제 프리미엄 샵입니다.
@@ -251,7 +253,7 @@ export default async function DongPage({ params }: PageProps) {
               <div className="p-6 md:p-7 -mt-6 relative z-10">
                 <div className="mb-2">
                   <span className="text-xs text-amber-400/90 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
-                    📍 {districtName} {decodedDong} 전지역 신속 방문 출장마사지
+                    📍 {districtName} {decodedDong} 전지역 신속 방문 (출장 힐링 마사지)
                   </span>
                 </div>
 
@@ -295,7 +297,7 @@ export default async function DongPage({ params }: PageProps) {
                   </a>
                   <a
                     href={`sms:${shop.phone}?body=${encodeURIComponent(
-                      `${districtName} ${decodedDong} ${shop.name} 출장마사지 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`
+                      `${districtName} ${decodedDong} ${shop.name} 출장 힐링 마사지 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`
                     )}`}
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >

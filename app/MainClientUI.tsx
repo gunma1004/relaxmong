@@ -194,8 +194,9 @@ export default function MainClientUI() {
       alert("원하시는 지역(구/시/군)을 먼저 선택해주세요!");
       return;
     }
+    // 동 이름 한글 URL 인코딩 적용
     const targetUrl = selectedDong
-      ? `/${selectedRegion}/${selectedDistrict}/${selectedDong}`
+      ? `/${selectedRegion}/${selectedDistrict}/${encodeURIComponent(selectedDong)}`
       : `/${selectedRegion}/${selectedDistrict}`;
     window.location.href = targetUrl;
   };
@@ -342,7 +343,7 @@ export default function MainClientUI() {
                 <img 
                   src={shop.image} 
                   alt={shop.name} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#141416] via-transparent to-black/30"></div>
                 

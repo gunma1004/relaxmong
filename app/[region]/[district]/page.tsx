@@ -9,7 +9,7 @@ interface PageProps {
   }>;
 }
 
-// 🟢 1. 구/시 단위 7개 템플릿 순환 동적 SEO 메타 태그 생성
+// 🟢 1. 구/시 단위 7개 템플릿 순환 동적 SEO 메타 태그 생성 (출장 + [중간단어] + 마사지 분리 패턴)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region, district } = resolvedParams;
@@ -27,33 +27,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   switch (seed) {
     case 0:
-      title = `${districtName} 출장마사지 추천 제휴업체 순위 | 릴렉스몽`;
-      description = `${regionName} ${districtName} 전지역 30분 도착 보장! 릴렉스몽에서 검증된 1:1 프라이빗 출장마사지 및 100% 현장 후불제 테라피 샵을 확인하세요.`;
+      title = `${districtName} 출장 힐링 마사지 추천 제휴업체 순위 | 릴렉스몽`;
+      description = `${regionName} ${districtName} 전지역 30분 도착 보장! 릴렉스몽에서 검증된 1:1 프라이빗 출장 힐링 마사지 및 100% 현장 후불제 테라피 샵을 확인하세요.`;
       break;
     case 1:
-      title = `${districtName} 출장마사지 홈타이·스웨디시 24시 할인 - 릴렉스몽`;
-      description = `${districtName} 출장마사지 전문 힐러 실시간 대기. 타이·아로마·스웨디시 맞춤 힐링 코스 및 24시간 안심 후불 예약 제휴점 안내.`;
+      title = `${districtName} 출장 타이 마사지 · 스웨디시 24시 할인 - 릴렉스몽`;
+      description = `${districtName} 출장 타이 마사지 전문 힐러 실시간 대기. 타이·아로마·스웨디시 맞춤 힐링 코스 및 24시간 안심 후불 예약 제휴점 안내.`;
       break;
     case 2:
-      title = `${regionName} ${districtName} 출장마사지 베스트 힐링 케어 | 릴렉스몽`;
-      description = `${districtName} 전구역 어디든 빠른 방문! 스트레스와 피로를 완벽하게 풀어주는 ${districtName} 출장마사지 만족도 1위 제휴업체 정보.`;
+      title = `${regionName} ${districtName} 출장 아로마 마사지 베스트 힐링 케어 | 릴렉스몽`;
+      description = `${districtName} 전구역 어디든 빠른 방문! 스트레스와 피로를 완벽하게 풀어주는 ${districtName} 출장 아로마 마사지 만족도 1위 제휴업체 정보.`;
       break;
     case 3:
-      title = `${districtName} 출장마사지 1:1 맞춤 프리미엄 홈케어 [릴렉스몽]`;
-      description = `${regionName} ${districtName} 전역 24시 신속 방문 출장마사지. 내 공간에서 편안하게 즐기는 최고급 바디케어 코스를 실시간 확인해보세요.`;
+      title = `${districtName} 출장 스웨디시 마사지 1:1 맞춤 프리미엄 홈케어 [릴렉스몽]`;
+      description = `${regionName} ${districtName} 전역 24시 신속 방문 출장 스웨디시 마사지. 내 공간에서 편안하게 즐기는 최고급 바디케어 코스를 실시간 확인해보세요.`;
       break;
     case 4:
-      title = `${districtName} 출장마사지 타이·아로마 24시 후불 예약 - 릴렉스몽`;
-      description = `${districtName} 출장마사지 안심 예약 플랫폼! 100% 후불 정찰제와 베테랑 테라피스트의 프라이빗 힐링 서비스를 제공합니다.`;
+      title = `${districtName} 출장 홈타이 마사지 24시 후불 예약 - 릴렉스몽`;
+      description = `${districtName} 출장 홈타이 마사지 안심 예약 플랫폼! 100% 후불 정찰제와 베테랑 테라피스트의 프라이빗 힐링 서비스를 제공합니다.`;
       break;
     case 5:
-      title = `${districtName} 출장마사지 만족도 1위 프라이빗 테라피 | 릴렉스몽`;
-      description = `${regionName} ${districtName} 고객 만족도 최우수 출장마사지 제휴점 안내. 건식 타이부터 스웨디시까지 맞춤형 힐링을 지금 예약하세요.`;
+      title = `${districtName} 출장 릴렉스 마사지 만족도 1위 프라이빗 테라피 | 릴렉스몽`;
+      description = `${regionName} ${districtName} 고객 만족도 최우수 출장 릴렉스 마사지 제휴점 안내. 건식 타이부터 스웨디시까지 맞춤형 힐링을 지금 예약하세요.`;
       break;
     case 6:
     default:
-      title = `${districtName} 출장마사지 실시간 예약 제휴점 가이드 | 릴렉스몽`;
-      description = `${districtName} 전지역 30분 도착! 릴렉스몽이 엄선한 ${districtName} 출장마사지 베스트 업체의 대표 코스 및 요금 정보를 안내합니다.`;
+      title = `${districtName} 출장 홈케어 마사지 실시간 예약 제휴점 가이드 | 릴렉스몽`;
+      description = `${districtName} 전지역 30분 도착! 릴렉스몽이 엄선한 ${districtName} 출장 홈케어 마사지 베스트 업체의 대표 코스 및 요금 정보를 안내합니다.`;
       break;
   }
 
@@ -61,10 +61,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     keywords: [
-      `${regionName} ${districtName} 출장마사지`,
-      `${districtName} 출장마사지`,
-      `${districtName} 홈타이`,
-      `${districtName} 스웨디시`,
+      `${regionName} ${districtName} 출장 힐링 마사지`,
+      `${districtName} 출장 타이 마사지`,
+      `${districtName} 출장 스웨디시 마사지`,
+      `${districtName} 출장 아로마 마사지`,
+      `${districtName} 출장 홈케어 마사지`,
       "릴렉스몽",
     ],
     openGraph: {
@@ -205,7 +206,7 @@ export default async function DistrictPage({ params }: PageProps) {
           <div className="mb-8 overflow-hidden rounded-3xl border border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] relative w-full">
             <img 
               src="/my-banner.png" 
-              alt={`${districtName} 출장마사지 메인 배너`} 
+              alt={`${districtName} 출장 힐링 마사지 메인 배너`} 
               className="w-full h-auto object-cover block"
             />
           </div>
@@ -214,7 +215,7 @@ export default async function DistrictPage({ params }: PageProps) {
           {dongs.length > 0 && (
             <div className="bg-gradient-to-b from-[#18181b] to-[#0f0f11] border-2 border-amber-500/40 p-6 rounded-3xl max-w-xl mx-auto mb-14 shadow-xl text-left">
               <h2 className="text-xs text-amber-400 font-black uppercase tracking-wider mb-3">
-                ✨ {districtName} 세부 동별 출장마사지 선택
+                ✨ {districtName} 세부 동별 출장 힐링 마사지 선택
               </h2>
               <div className="flex flex-wrap gap-2">
                 {dongs.map((dong, idx) => (
@@ -236,7 +237,7 @@ export default async function DistrictPage({ params }: PageProps) {
           <div className="flex justify-between items-end mb-4 px-2">
             <div>
               <h1 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                <span>🔥</span> {regionName} {districtName} 출장마사지 추천 제휴업체
+                <span>🔥</span> {regionName} {districtName} 출장 힐링 마사지 추천 제휴업체
               </h1>
               <p className="text-xs text-gray-400 mt-1">{districtName} 전지역 30분 도착 가능한 100% 후불 정찰제 프리미엄 샵입니다.</p>
             </div>
@@ -263,7 +264,7 @@ export default async function DistrictPage({ params }: PageProps) {
               <div className="p-6 md:p-7 -mt-6 relative z-10">
                 <div className="mb-2">
                   <span className="text-xs text-amber-400/90 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
-                    📍 {districtName} 전지역 신속 방문 출장마사지
+                    📍 {districtName} 전지역 신속 방문 (출장 힐링 마사지)
                   </span>
                 </div>
 
@@ -299,7 +300,7 @@ export default async function DistrictPage({ params }: PageProps) {
                     <span className="text-base">📞</span> 전화로 즉시예약
                   </a>
                   <a 
-                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${districtName} ${shop.name} 출장마사지 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`)}`} 
+                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${districtName} ${shop.name} 출장 힐링 마사지 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`)}`} 
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >
                     <span className="text-base">💬</span> 간편 문자상담
