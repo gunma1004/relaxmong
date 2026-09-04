@@ -9,11 +9,20 @@ interface PageProps {
   }>;
 }
 
+// 🎯 영어 지역 코드를 한글 명칭으로 안전하게 변환해 주는 헬퍼 함수
+const getRegionName = (regionKey: string) => {
+  switch (regionKey) {
+    case "seoul": return "서울특별시";
+    case "gyeonggi": return "경기도";
+    case "incheon": return "인천광역시";
+    default: return regionData[regionKey]?.name || "수도권";
+  }
+};
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region } = resolvedParams;
   
-  // URL 경로 전체에서 district-massage 파라미터 안전하게 추출
   const values = Object.values(resolvedParams);
   const rawDistrictParam = values[values.length - 1] || "";
   const districtKey = rawDistrictParam.replace(/-massage$/, "");
@@ -21,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[districtKey];
   const districtName = districtObj?.name || districtKey;
-  const regionName = regionInfo?.name || "수도권";
+  const regionName = getRegionName(region); // 👈 한글 지역명 적용
 
   const title = `${districtName} 출장마사지 추천 제휴업체 순위 | 릴렉스몽`;
   const description = `${regionName} ${districtName} 전지역 30분 도착 보장! 릴렉스몽 검증된 1:1 출장마사지 제휴 샵을 확인하세요.`;
@@ -110,7 +119,6 @@ export default async function DistrictMassagePage({ params }: PageProps) {
   const resolvedParams = await params;
   const { region } = resolvedParams;
   
-  // 파라미터 배열에서 마지막 값을 가져와 '-massage' 제거
   const values = Object.values(resolvedParams);
   const rawDistrictParam = values[values.length - 1] || "";
   const districtKey = rawDistrictParam.replace(/-massage$/, "");
@@ -118,7 +126,7 @@ export default async function DistrictMassagePage({ params }: PageProps) {
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[districtKey];
   const districtName = districtObj?.name || districtKey;
-  const regionName = regionInfo?.name || "수도권";
+  const regionName = getRegionName(region); // 👈 한글 지역명 적용
   const dongs = districtObj?.dongs || [];
 
   return (
