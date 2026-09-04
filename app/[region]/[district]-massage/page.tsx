@@ -18,7 +18,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const districtKey = rawDistrictParam.replace("-massage", "");
 
   const regionInfo = regionData[region];
-  const districtName = regionInfo?.districts[districtKey]?.name || "상세 지역";
+  const districtObj = regionInfo?.districts[districtKey];
+  const districtName = districtObj?.name || districtKey;
   const regionName = regionInfo?.name || "수도권";
 
   const title = `${districtName} 출장마사지 추천 제휴업체 순위 | 릴렉스몽`;

@@ -19,7 +19,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
 
   const regionInfo = regionData[region];
-  const districtName = regionInfo?.districts[district]?.name || district;
+  const districtObj = regionInfo?.districts[district];
+  const districtName = districtObj?.name || district;
 
   const title = `${districtName} ${decodedDong} 출장마사지 24시 신속방문 제휴안내 | 릴렉스몽`;
   const description = `${districtName} ${decodedDong} 출장마사지 실시간 예약. 30분 내 빠른 도착과 100% 현장 후불 정찰제로 편안한 홈타이·스웨디시 출장마사지를 경험하세요.`;
