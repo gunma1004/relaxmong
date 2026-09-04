@@ -35,8 +35,16 @@ const shops = [
     desc: "⭐ 만족도 1위! 프리미엄 1:1 홈힐링 테라피",
     phone: "0507-1280-3361",
     badge: "실시간 인기폭발",
-    badgeColor: "bg-red-500 text-white",
     courses: [{ name: "프리미엄 스웨디시 (60분)", price: "140,000원", best: true }],
+  },
+  {
+    id: 2,
+    name: "✨ 한국미인테라피",
+    location: "서울·경기·인천 전지역",
+    desc: "🏆 품격 있는 힐링을 선사하는 최고급 프라이빗 테라피",
+    phone: "0507-1280-3288",
+    badge: "만족도 최우수",
+    courses: [{ name: "스페셜 아로마 힐링 (60분)", price: "140,000원", best: true }],
   },
 ];
 
@@ -86,7 +94,7 @@ export default async function DistrictPage({ params }: PageProps) {
 
         <div className="space-y-6">
           {shops.map((shop) => (
-            <div key={shop.id} className="bg-[#141416] border border-amber-500/25 p-6 rounded-3xl">
+            <div key={shop.id} className="bg-[#141416] border border-amber-500/25 p-6 rounded-3xl shadow-lg">
               <h3 className="text-xl font-bold text-white mb-2">{shop.name}</h3>
               <p className="text-sm text-gray-300 mb-4">{shop.desc}</p>
               <a href={`tel:${shop.phone}`} className="block text-center bg-amber-500 text-black font-bold py-3 rounded-xl">
