@@ -13,9 +13,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const resolvedParams = await params;
   const { region } = resolvedParams;
   
+  // URL 경로 전체에서 district-massage 파라미터 안전하게 추출
   const values = Object.values(resolvedParams);
   const rawDistrictParam = values[values.length - 1] || "";
-  const districtKey = rawDistrictParam.replace("-massage", "");
+  const districtKey = rawDistrictParam.replace(/-massage$/, "");
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[districtKey];
@@ -109,9 +110,10 @@ export default async function DistrictMassagePage({ params }: PageProps) {
   const resolvedParams = await params;
   const { region } = resolvedParams;
   
+  // 파라미터 배열에서 마지막 값을 가져와 '-massage' 제거
   const values = Object.values(resolvedParams);
   const rawDistrictParam = values[values.length - 1] || "";
-  const districtKey = rawDistrictParam.replace("-massage", "");
+  const districtKey = rawDistrictParam.replace(/-massage$/, "");
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[districtKey];
