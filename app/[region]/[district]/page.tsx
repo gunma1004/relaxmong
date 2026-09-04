@@ -221,10 +221,10 @@ export default async function DistrictPage({ params }: PageProps) {
                 {dongs.map((dong, idx) => (
                   <Link 
                     key={idx} 
-                    href={`/${region}/${district}/${encodeURIComponent(dong)}`}
+                    href={`/${region}/${district}/${encodeURIComponent(dong)}-출장마사지`}
                     className="bg-black/70 hover:bg-amber-500 hover:text-black text-gray-200 text-xs font-bold px-3.5 py-2 rounded-xl border border-amber-500/25 transition-all"
                   >
-                    {dong}
+                    {dong} 출장마사지
                   </Link>
                 ))}
               </div>

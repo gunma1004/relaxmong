@@ -194,9 +194,9 @@ export default function MainClientUI() {
       alert("원하시는 지역(구/시/군)을 먼저 선택해주세요!");
       return;
     }
-    // 동 이름 한글 URL 인코딩 적용
+    // 동이 선택된 경우 뒤에 '-출장마사지' 키워드가 붙도록 수정
     const targetUrl = selectedDong
-      ? `/${selectedRegion}/${selectedDistrict}/${encodeURIComponent(selectedDong)}`
+      ? `/${selectedRegion}/${selectedDistrict}/${encodeURIComponent(selectedDong)}-출장마사지`
       : `/${selectedRegion}/${selectedDistrict}`;
     window.location.href = targetUrl;
   };

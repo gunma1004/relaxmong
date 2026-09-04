@@ -6,15 +6,18 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
-    dong: string;
+    "dong-출장마사지": string;
   }>;
 }
 
 // 🟢 1. 동 단위 7개 템플릿 순환 동적 SEO 메타 태그 생성 (출장 + [중간단어] + 마사지 분리 패턴)
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const { region, district, dong } = resolvedParams;
-  const decodedDong = decodeURIComponent(dong);
+  const { region, district, "dong-출장마사지": dongParam } = resolvedParams;
+  
+  // URL의 '역삼동-출장마사지' 형태에서 '-'를 기준으로 앞의 동 이름만 추출
+  const rawDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
+  const decodedDong = rawDong;
 
   const regionInfo = regionData[region];
   const districtName = regionInfo?.districts[district]?.name || district;
@@ -166,8 +169,10 @@ const shops = [
 
 export default async function DongPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const { region, district, dong } = resolvedParams;
-  const decodedDong = decodeURIComponent(dong);
+  const { region, district, "dong-출장마사지": dongParam } = resolvedParams;
+  
+  const rawDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
+  const decodedDong = rawDong;
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[district];

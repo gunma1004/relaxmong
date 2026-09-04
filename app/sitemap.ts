@@ -28,11 +28,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
       });
 
-      // 2-2. 세부 동 단위 페이지 (예: /seoul/gangnam/역삼1동)
+      // 2-2. 세부 동 단위 페이지 (예: /seoul/gangnam/역삼1동-출장마사지)
       const dongs = districts[districtKey].dongs || [];
       dongs.forEach((dong) => {
         routes.push({
-          url: `${baseUrl}/${regionKey}/${districtKey}/${encodeURIComponent(dong)}`,
+          url: `${baseUrl}/${regionKey}/${districtKey}/${encodeURIComponent(dong)}-출장마사지`,
           lastModified: currentDate,
           changeFrequency: 'weekly',
           priority: 0.7,
