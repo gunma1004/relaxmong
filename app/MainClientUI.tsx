@@ -105,70 +105,70 @@ const shops = [
     id: 1,
     name: "🔥 한국골든테라피",
     location: "서울·경기·인천 전지역 (실시간 신속 방문)",
-    desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 프리미엄 1:1 홈힐링 테라피",
+    desc: "⭐ 만족도 1위! 지친 일상을 깨우는 정성 가득한 프리미엄 1:1 홈힐링 출장마사지",
     phone: "0507-1280-3361",
     badge: "실시간 인기폭발",
     badgeColor: "bg-red-500 text-white animate-pulse",
     image: "/shop1.jpg",
     courses: [
-      { name: "릴렉스 건식 케어 (60분)", price: "60,000원", best: false },
-      { name: "프리미엄 스웨디시 (60분)", price: "140,000원", best: true },
+      { name: "릴렉스 건식 출장마사지 (60분)", price: "60,000원", best: false },
+      { name: "프리미엄 스웨디시 출장마사지 (60분)", price: "140,000원", best: true },
     ]
   },
   {
     id: 2,
     name: "✨ 한국미인테라피",
     location: "서울·경기·인천 전지역",
-    desc: "🏆 품격 있는 힐링을 선사하는 최고급 프라이빗 1:1 맞춤형 방문 테라피",
+    desc: "🏆 품격 있는 힐링을 선사하는 최고급 프라이빗 1:1 맞춤형 방문 출장마사지",
     phone: "0507-1280-3288",
     badge: "만족도 최우수",
     badgeColor: "bg-amber-500 text-black",
     image: "/shop2.jpg",
     courses: [
-      { name: "맞춤형 바디 케어 (60분)", price: "90,000원", best: false },
-      { name: "스페셜 아로마 힐링 (60분)", price: "140,000원", best: true },
+      { name: "맞춤형 바디 출장마사지 (60분)", price: "90,000원", best: false },
+      { name: "스페셜 아로마 출장마사지 (60분)", price: "140,000원", best: true },
     ]
   },
   {
     id: 3,
     name: "💎 주주테라피",
     location: "서울·경기·인천 전지역",
-    desc: "⚡ 철저한 위생 관리와 럭셔리 힐링 케어로 완성하는 일상의 완벽한 휴식",
+    desc: "⚡ 철저한 위생 관리와 럭셔리 출장마사지로 완성하는 일상의 완벽한 휴식",
     phone: "0507-1280-3180",
     badge: "24시 상시할인",
     badgeColor: "bg-purple-600 text-white",
     image: "/shop3.jpg",
     courses: [
-      { name: "타이/아로마 코스 (60분)", price: "60,000원", best: false },
-      { name: "한국 스웨디시케어 (60분)", price: "140,000원", best: true },
+      { name: "타이/아로마 출장마사지 (60분)", price: "60,000원", best: false },
+      { name: "한국 스웨디시 출장마사지 (60분)", price: "140,000원", best: true },
     ]
   },
   {
     id: 4,
     name: "🌟 퀸즈홈테라피",
     location: "서울·경기·인천 전지역",
-    desc: "💯 전문 테라피스트들의 체계적이고 세심한 1:1 맞춤 피로 회복 프로그램",
+    desc: "💯 전문 테라피스트들의 체계적이고 세심한 1:1 출장마사지 피로 회복 프로그램",
     phone: "0507-1280-3228",
     badge: "신규 제휴할인",
     badgeColor: "bg-blue-600 text-white",
     image: "/shop4.jpg",
     courses: [
-      { name: "스탠다드 타이코스 (60분)", price: "60,000원", best: false },
-      { name: "VIP 스웨디시 (90분)", price: "140,000원", best: true },
+      { name: "스탠다드 타이 출장마사지 (60분)", price: "60,000원", best: false },
+      { name: "VIP 스웨디시 출장마사지 (90분)", price: "140,000원", best: true },
     ]
   },
   {
     id: 5,
     name: "👑 24시미녀테라피",
     location: "서울·경기·인천 전지역",
-    desc: "🚀 100% 현장 후불 정찰제! 수도권 전지역 평균 30분 내 신속 방문 보장",
+    desc: "🚀 100% 현장 후불 정찰제! 수도권 전지역 평균 30분 내 신속 방문 출장마사지 보장",
     phone: "0507-1280-3183",
     badge: "재방문율 99%",
     badgeColor: "bg-emerald-500 text-black",
     image: "/shop5.jpg",
     courses: [
-      { name: "릴렉스 타이 코스 (60분)", price: "60,000원", best: false },
-      { name: "시그니처 스웨디시 (60분)", price: "140,000원", best: true },
+      { name: "릴렉스 타이 출장마사지 (60분)", price: "60,000원", best: false },
+      { name: "시그니처 스웨디시 출장마사지 (60분)", price: "140,000원", best: true },
     ]
   }
 ];
@@ -194,7 +194,7 @@ export default function MainClientUI() {
       alert("원하시는 지역(구/시/군)을 먼저 선택해주세요!");
       return;
     }
-    // 동이 선택된 경우 뒤에 '-출장마사지' 키워드가 붙도록 수정
+    // 동이 선택된 경우와 구만 선택된 경우의 URL 분기 처리
     const targetUrl = selectedDong
       ? `/${selectedRegion}/${selectedDistrict}/${encodeURIComponent(selectedDong)}-출장마사지`
       : `/${selectedRegion}/${selectedDistrict}`;
@@ -223,7 +223,7 @@ export default function MainClientUI() {
               <span className="text-xl font-black tracking-wider bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
                 릴렉스몽
               </span>
-              <span className="text-[10px] text-gray-400 tracking-tighter uppercase">RELAXMONG &middot; SEOUL &middot; GYEONGGI &middot; INCHEON</span>
+              <span className="text-[10px] text-gray-400 tracking-tighter uppercase">RELAXMONG &middot; 출장마사지 플랫폼</span>
             </div>
           </a>
           
@@ -233,7 +233,7 @@ export default function MainClientUI() {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
             </span>
             <span className="text-xs px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500/20 to-red-500/20 text-amber-300 border border-amber-500/30 font-bold shadow-inner">
-              🔥 24시 실시간 예약접수
+              🔥 24시 출장마사지 예약접수
             </span>
           </div>
         </div>
@@ -257,10 +257,10 @@ export default function MainClientUI() {
 
             <div className="flex items-center justify-between mb-4">
               <label className="text-xs text-amber-400 font-black uppercase tracking-wider flex items-center gap-1.5">
-                📍 내 주변 맞춤 제휴업체 찾기
+                📍 내 주변 맞춤 출장마사지 찾기
               </label>
               <span className="text-[11px] text-gray-400 bg-black/40 px-2.5 py-1 rounded-lg border border-white/5">
-                수도권 전지역 실시간 대기중
+                수도권 전지역 출장마사지 대기중
               </span>
             </div>
 
@@ -290,7 +290,7 @@ export default function MainClientUI() {
                   <option value="" className="bg-[#1e1e1e] text-gray-400">구 / 시 / 군을 선택해주세요</option>
                   {Object.keys(currentDistricts).map((dKey) => (
                     <option key={dKey} value={dKey} className="bg-[#1e1e1e] text-white">
-                      {currentDistricts[dKey].name}
+                      {currentDistricts[dKey].name} 출장마사지
                     </option>
                   ))}
                 </select>
@@ -307,7 +307,7 @@ export default function MainClientUI() {
                   <option value="" className="bg-[#1e1e1e] text-gray-400">동 전체 보기 (빠른 검색)</option>
                   {currentDongs.map((dong, idx) => (
                     <option key={idx} value={dong} className="bg-[#1e1e1e] text-white">
-                      {dong}
+                      {dong} 출장마사지
                     </option>
                   ))}
                 </select>
@@ -317,7 +317,7 @@ export default function MainClientUI() {
                 onClick={handleSearch}
                 className="w-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-300 text-black font-black py-4 rounded-2xl text-sm transition-all shadow-[0_0_25px_rgba(245,158,11,0.4)] mt-3 cursor-pointer transform active:scale-[0.98]"
               >
-                🚀 내 동네 제휴업체 실시간 확인하기
+                🚀 내 동네 출장마사지 실시간 확인하기
               </button>
             </div>
           </div>
@@ -328,9 +328,9 @@ export default function MainClientUI() {
           <div className="flex justify-between items-end mb-4 px-2">
             <div>
               <h2 className="text-xl md:text-2xl font-black text-white flex items-center gap-2">
-                <span>🏆</span> 실시간 베스트 추천 제휴업체
+                <span>🏆</span> 실시간 베스트 출장마사지 제휴업체
               </h2>
-              <p className="text-xs text-gray-400 mt-1">고객 만족도 및 재방문율이 가장 검증된 프리미엄 홈케어 샵입니다.</p>
+              <p className="text-xs text-gray-400 mt-1">고객 만족도 및 재방문율이 가장 검증된 프리미엄 홈케어 출장마사지 샵입니다.</p>
             </div>
           </div>
 
@@ -370,7 +370,7 @@ export default function MainClientUI() {
 
                 <div className="bg-black/60 rounded-2xl p-4 mb-6 space-y-2.5 border border-white/5 shadow-inner">
                   <div className="text-[11px] text-amber-400 font-bold tracking-wider mb-1 uppercase">
-                    💎 대표 코스 및 요금 안내
+                    💎 출장마사지 대표 코스 및 요금 안내
                   </div>
                   {shop.courses.map((course, idx) => (
                     <div key={idx} className="flex justify-between text-xs md:text-sm items-center py-1.5 border-b border-white/5 last:border-0">
@@ -394,10 +394,10 @@ export default function MainClientUI() {
                     href={`tel:${shop.phone}`} 
                     className="flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-black py-4 rounded-2xl text-xs md:text-sm transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] transform active:scale-95"
                   >
-                    <span className="text-base">📞</span> 전화로 즉시예약
+                    <span className="text-base">📞</span> 출장마사지 전화예약
                   </a>
                   <a 
-                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${shop.name} 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`)}`} 
+                    href={`sms:${shop.phone}?body=${encodeURIComponent(`${shop.name} 출장마사지 예약 문의드립니다. (릴렉스몽 보고 연락드렸어요)`)}`} 
                     className="flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-black py-4 rounded-2xl text-xs md:text-sm border border-white/10 transition-all hover:border-amber-500/40 transform active:scale-95 shadow-md"
                   >
                     <span className="text-base">💬</span> 간편 문자상담
@@ -413,7 +413,7 @@ export default function MainClientUI() {
       {/* 하단 푸터 */}
       <footer className="bg-[#030303] border-t border-white/10 py-10 text-center text-gray-500 text-xs mt-auto">
         <div className="max-w-4xl mx-auto px-4 space-y-3">
-          <p className="text-gray-400 font-bold">릴렉스몽은 건전하고 안전한 1:1 방문 홈케어 정보 플랫폼입니다.</p>
+          <p className="text-gray-400 font-bold">릴렉스몽은 건전하고 안전한 1:1 방문 홈케어 출장마사지 정보 플랫폼입니다.</p>
           <p className="text-[11px] text-gray-600">COPYRIGHT &copy; RELAXMONG ALL RIGHTS RESERVED.</p>
         </div>
       </footer>
