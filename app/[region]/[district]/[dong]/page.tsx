@@ -6,17 +6,15 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
-    [key: string]: string;
+    dong: string;
   }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const { region, district } = resolvedParams;
+  const { region, district, dong } = resolvedParams;
   
-  const values = Object.values(resolvedParams);
-  const dongParam = values[values.length - 1] || "";
-  const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
+  const decodedDong = dong ? decodeURIComponent(dong) : "";
 
   const regionInfo = regionData[region];
   const districtName = regionInfo?.districts[district]?.name || district;
@@ -66,15 +64,55 @@ const shops = [
       { name: "스페셜 아로마 힐링 (60분)", price: "140,000원", best: true },
     ],
   },
+  {
+    id: 3,
+    name: "💎 주주테라피",
+    location: "서울·경기·인천 전지역",
+    desc: "⚡ 철저한 위생 관리와 럭셔리 힐링 케어로 완성하는 일상의 완벽한 휴식",
+    phone: "0507-1280-3180",
+    badge: "24시 상시할인",
+    badgeColor: "bg-purple-600 text-white",
+    image: "/shop3.jpg",
+    courses: [
+      { name: "타이/아로마 코스 (60분)", price: "60,000원", best: false },
+      { name: "한국 스웨디시케어 (60분)", price: "140,000원", best: true },
+    ],
+  },
+  {
+    id: 4,
+    name: "🌟 퀸즈홈테라피",
+    location: "서울·경기·인천 전지역",
+    desc: "💯 전문 테라피스트들의 체계적이고 세심한 1:1 맞춤 피로 회복 프로그램",
+    phone: "0507-1280-3228",
+    badge: "신규 제휴할인",
+    badgeColor: "bg-blue-600 text-white",
+    image: "/shop4.jpg",
+    courses: [
+      { name: "스탠다드 타이코스 (60분)", price: "60,000원", best: false },
+      { name: "VIP 스웨디시 (90분)", price: "140,000원", best: true },
+    ],
+  },
+  {
+    id: 5,
+    name: "👑 24시미녀테라피",
+    location: "서울·경기·인천 전지역",
+    desc: "🚀 100% 현장 후불 정찰제! 수도권 전지역 평균 30분 내 신속 방문 보장",
+    phone: "0507-1280-3183",
+    badge: "재방문율 99%",
+    badgeColor: "bg-emerald-500 text-black",
+    image: "/shop5.jpg",
+    courses: [
+      { name: "릴렉스 타이 코스 (60분)", price: "60,000원", best: false },
+      { name: "시그니처 스웨디시 (60분)", price: "140,000원", best: true },
+    ],
+  },
 ];
 
 export default async function DongPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const { region, district } = resolvedParams;
+  const { region, district, dong } = resolvedParams;
   
-  const values = Object.values(resolvedParams);
-  const dongParam = values[values.length - 1] || "";
-  const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
+  const decodedDong = dong ? decodeURIComponent(dong) : "";
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[district];
