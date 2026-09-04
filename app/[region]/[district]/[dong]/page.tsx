@@ -6,31 +6,32 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
-    dong: string;
+    [key: string]: string;
   }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const { region, district, dong } = resolvedParams;
+  const { region, district } = resolvedParams;
   
-  // URL에서 전달된 동 이름 정돈 (예: '수궁동-출장마사지' -> '수궁동')
-  const cleanDong = dong ? decodeURIComponent(dong).split("-")[0] : "";
+  const values = Object.values(resolvedParams);
+  const dongParam = values[values.length - 1] || "";
+  const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[district];
   const districtName = districtObj?.name || district;
 
-  const title = `${districtName} ${cleanDong} 출장마사지 24시 신속방문 제휴안내 | 릴렉스몽`;
-  const description = `${districtName} ${cleanDong} 출장마사지 실시간 예약. 30분 내 빠른 도착과 100% 현장 후불 정찰제로 편안한 홈타이·스웨디시 출장마사지를 경험하세요.`;
+  const title = `${districtName} ${decodedDong} 출장마사지 24시 신속방문 제휴안내 | 릴렉스몽`;
+  const description = `${districtName} ${decodedDong} 출장마사지 실시간 예약. 30분 내 빠른 도착과 100% 현장 후불 정찰제로 편안한 홈타이·스웨디시 출장마사지를 경험하세요.`;
 
   return {
     title,
     description,
     keywords: [
-      `${districtName} ${cleanDong} 출장마사지`,
-      `${cleanDong} 타이 출장마사지`,
-      `${cleanDong} 스웨디시 출장마사지`,
+      `${districtName} ${decodedDong} 출장마사지`,
+      `${decodedDong} 타이 출장마사지`,
+      `${decodedDong} 스웨디시 출장마사지`,
       "릴렉스몽",
     ],
     openGraph: { title, description, type: "website", siteName: "릴렉스몽" },
@@ -112,9 +113,11 @@ const shops = [
 
 export default async function DongPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const { region, district, dong } = resolvedParams;
+  const { region, district } = resolvedParams;
   
-  const cleanDong = dong ? decodeURIComponent(dong).split("-")[0] : "";
+  const values = Object.values(resolvedParams);
+  const dongParam = values[values.length - 1] || "";
+  const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[district];
@@ -133,29 +136,46 @@ export default async function DongPage({ params }: PageProps) {
 
       <main className="max-w-4xl mx-auto px-4 py-8 w-full flex-1">
         <h1 className="text-2xl font-black text-white mb-2">
-          🔥 {districtName} {cleanDong} 출장마사지 추천 제휴업체
+          🔥 {districtName} {decodedDong} 출장마사지 추천 제휴업체
         </h1>
-        <p className="text-xs text-gray-400 mb-8">{cleanDong} 전지역 30분 내 신속 방문 가능한 100% 후불제 출장마사지 샵입니다.</p>
+        <p className="text-xs text-gray-400 mb-8">{decodedDong} 전지역 30분 내 신속 방문 가능한 100% 후불제 출장마사지 샵입니다.</p>
 
         <div className="space-y-6">
           {shops.map((shop) => (
-            <div key={shop.id} className="bg-[#141416] border border-amber-500/25 p-6 rounded-3xl shadow-lg">
-              <span className="text-[11px] text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
-                📍 {districtName} {cleanDong} 전지역 신속 방문 출장마사지
-              </span>
-              <h3 className="text-xl font-bold text-white mb-2">{shop.name}</h3>
-              <p className="text-sm text-gray-300 mb-4">{shop.desc}</p>
-              <div className="space-y-2 mb-4">
-                {shop.courses.map((course, idx) => (
-                  <div key={idx} className="flex justify-between text-xs text-gray-300 border-b border-white/5 py-1">
-                    <span>{course.name}</span>
-                    <span className="text-amber-400 font-bold">{course.price}</span>
-                  </div>
-                ))}
+            <div key={shop.id} className="bg-[#141416] border border-amber-500/25 rounded-3xl overflow-hidden shadow-lg">
+              <div className="relative h-48 md:h-56 w-full overflow-hidden">
+                <img 
+                  src={shop.image} 
+                  alt={shop.name} 
+                  className="w-full h-full object-cover filter brightness-90" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141416] via-transparent to-black/30"></div>
+                <div className="absolute top-4 left-4">
+                  <span className={`text-[11px] font-black px-3 py-1 rounded-full shadow-lg ${shop.badgeColor}`}>
+                    {shop.badge}
+                  </span>
+                </div>
               </div>
-              <a href={`tel:${shop.phone}`} className="block text-center bg-amber-500 text-black font-bold py-3 rounded-xl">
-                📞 출장마사지 전화 즉시예약 ({shop.phone})
-              </a>
+
+              <div className="p-6 md:p-7 -mt-6 relative z-10">
+                <span className="text-[11px] text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
+                  📍 {districtName} {decodedDong} 전지역 신속 방문 출장마사지
+                </span>
+                <h3 className="text-xl font-bold text-white mb-2">{shop.name}</h3>
+                <p className="text-sm text-gray-300 mb-4">{shop.desc}</p>
+                <div className="space-y-2 mb-4 bg-black/60 rounded-2xl p-4 border border-white/5">
+                  <div className="text-[11px] text-amber-400 font-bold tracking-wider mb-1 uppercase">💎 코스 안내</div>
+                  {shop.courses.map((course, idx) => (
+                    <div key={idx} className="flex justify-between text-xs md:text-sm text-gray-300 border-b border-white/5 py-1.5 last:border-0">
+                      <span>{course.name}</span>
+                      <span className="text-amber-400 font-bold">{course.price}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href={`tel:${shop.phone}`} className="block text-center bg-amber-500 text-black font-bold py-3.5 rounded-xl">
+                  📞 출장마사지 전화 즉시예약 ({shop.phone})
+                </a>
+              </div>
             </div>
           ))}
         </div>

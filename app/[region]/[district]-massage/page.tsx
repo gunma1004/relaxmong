@@ -9,7 +9,6 @@ interface PageProps {
   }>;
 }
 
-// 🎯 영어 지역 코드를 한글 명칭으로 안전하게 변환해 주는 헬퍼 함수
 const getRegionName = (regionKey: string) => {
   switch (regionKey) {
     case "seoul": return "서울특별시";
@@ -30,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[districtKey];
   const districtName = districtObj?.name || districtKey;
-  const regionName = getRegionName(region); // 👈 한글 지역명 적용
+  const regionName = getRegionName(region);
 
   const title = `${districtName} 출장마사지 추천 제휴업체 순위 | 릴렉스몽`;
   const description = `${regionName} ${districtName} 전지역 30분 도착 보장! 릴렉스몽 검증된 1:1 출장마사지 제휴 샵을 확인하세요.`;
@@ -126,7 +125,7 @@ export default async function DistrictMassagePage({ params }: PageProps) {
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[districtKey];
   const districtName = districtObj?.name || districtKey;
-  const regionName = getRegionName(region); // 👈 한글 지역명 적용
+  const regionName = getRegionName(region);
   const dongs = districtObj?.dongs || [];
 
   return (
@@ -165,23 +164,40 @@ export default async function DistrictMassagePage({ params }: PageProps) {
 
         <div className="space-y-6">
           {shops.map((shop) => (
-            <div key={shop.id} className="bg-[#141416] border border-amber-500/25 p-6 rounded-3xl shadow-lg">
-              <span className="text-[11px] text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
-                📍 {districtName} 전지역 신속 방문 출장마사지
-              </span>
-              <h3 className="text-xl font-bold text-white mb-2">{shop.name}</h3>
-              <p className="text-sm text-gray-300 mb-4">{shop.desc}</p>
-              <div className="space-y-2 mb-4">
-                {shop.courses.map((course, idx) => (
-                  <div key={idx} className="flex justify-between text-xs text-gray-300 border-b border-white/5 py-1">
-                    <span>{course.name}</span>
-                    <span className="text-amber-400 font-bold">{course.price}</span>
-                  </div>
-                ))}
+            <div key={shop.id} className="bg-[#141416] border border-amber-500/25 rounded-3xl overflow-hidden shadow-lg">
+              <div className="relative h-48 md:h-56 w-full overflow-hidden">
+                <img 
+                  src={shop.image} 
+                  alt={shop.name} 
+                  className="w-full h-full object-cover filter brightness-90" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141416] via-transparent to-black/30"></div>
+                <div className="absolute top-4 left-4">
+                  <span className={`text-[11px] font-black px-3 py-1 rounded-full shadow-lg ${shop.badgeColor}`}>
+                    {shop.badge}
+                  </span>
+                </div>
               </div>
-              <a href={`tel:${shop.phone}`} className="block text-center bg-amber-500 text-black font-bold py-3 rounded-xl">
-                📞 출장마사지 전화 즉시예약 ({shop.phone})
-              </a>
+
+              <div className="p-6 md:p-7 -mt-6 relative z-10">
+                <span className="text-[11px] text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 inline-block mb-2">
+                  📍 {districtName} 전지역 신속 방문 출장마사지
+                </span>
+                <h3 className="text-xl font-bold text-white mb-2">{shop.name}</h3>
+                <p className="text-sm text-gray-300 mb-4">{shop.desc}</p>
+                <div className="space-y-2 mb-4 bg-black/60 rounded-2xl p-4 border border-white/5">
+                  <div className="text-[11px] text-amber-400 font-bold tracking-wider mb-1 uppercase">💎 코스 안내</div>
+                  {shop.courses.map((course, idx) => (
+                    <div key={idx} className="flex justify-between text-xs md:text-sm text-gray-300 border-b border-white/5 py-1.5 last:border-0">
+                      <span>{course.name}</span>
+                      <span className="text-amber-400 font-bold">{course.price}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href={`tel:${shop.phone}`} className="block text-center bg-amber-500 text-black font-bold py-3.5 rounded-xl">
+                  📞 출장마사지 전화 즉시예약 ({shop.phone})
+                </a>
+              </div>
             </div>
           ))}
         </div>
