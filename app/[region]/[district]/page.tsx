@@ -1,4 +1,4 @@
-import { regionData } from "../../../data/regions";
+import { regionData } from "../../data/regions";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -6,28 +6,24 @@ interface PageProps {
   params: Promise<{
     region: string;
     district: string;
-    [key: string]: string;
   }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const { region, district } = resolvedParams;
-  
-  const values = Object.values(resolvedParams);
-  const dongParam = values[values.length - 1] || "";
-  const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
 
   const regionInfo = regionData[region];
-  const districtName = regionInfo?.districts[district]?.name || district;
+  const districtName = regionInfo?.districts[district]?.name || "상세 지역";
+  const regionName = regionInfo?.name || "수도권";
 
-  const title = `${districtName} ${decodedDong} 출장 힐링 마사지 24시 신속방문 제휴안내 | 릴렉스몽`;
-  const description = `${districtName} ${decodedDong} 출장 마사지 실시간 예약. 30분 내 빠른 도착과 100% 후불제.`;
+  const title = `${districtName} 출장 힐링 마사지 추천 제휴업체 순위 | 릴렉스몽`;
+  const description = `${regionName} ${districtName} 전지역 30분 도착 보장! 릴렉스몽 검증된 1:1 출장 마사지.`;
 
   return {
     title,
     description,
-    keywords: [`${districtName} ${decodedDong} 출장 힐링 마사지`, "릴렉스몽"],
+    keywords: [`${regionName} ${districtName} 출장 힐링 마사지`, "릴렉스몽"],
   };
 }
 
@@ -44,34 +40,49 @@ const shops = [
   },
 ];
 
-export default async function DongPage({ params }: PageProps) {
+export default async function DistrictPage({ params }: PageProps) {
   const resolvedParams = await params;
   const { region, district } = resolvedParams;
-  
-  const values = Object.values(resolvedParams);
-  const dongParam = values[values.length - 1] || "";
-  const decodedDong = dongParam ? decodeURIComponent(dongParam).split("-")[0] : "";
 
   const regionInfo = regionData[region];
   const districtObj = regionInfo?.districts[district];
   const districtName = districtObj?.name || district;
+  const regionName = regionInfo?.name || "수도권";
+  const dongs = districtObj?.dongs || [];
 
   return (
     <div className="bg-[#050505] text-gray-100 min-h-screen flex flex-col font-sans">
       <header className="sticky top-0 z-50 bg-[#050505]/85 border-b border-amber-500/20 px-4 py-3.5">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <Link href="/" className="text-amber-400 font-black text-xl">릴렉스몽</Link>
-          <Link href={`/${region}/${district}`} className="text-xs px-4 py-2 rounded-xl bg-neutral-800 text-amber-400 font-extrabold">
-            ← {districtName} 전체 목록으로
+          <Link href="/" className="text-xs px-4 py-2 rounded-xl bg-amber-500 text-black font-extrabold">
+            🏠 메인으로 가기
           </Link>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-4 py-8 w-full flex-1">
         <h1 className="text-2xl font-black text-white mb-2">
-          🔥 {districtName} {decodedDong} 출장 힐링 마사지 추천 제휴업체
+          🔥 {regionName} {districtName} 출장 힐링 마사지 추천 제휴업체
         </h1>
-        <p className="text-xs text-gray-400 mb-8">{decodedDong} 전지역 30분 도착 보장 100% 후불제 샵입니다.</p>
+        <p className="text-xs text-gray-400 mb-8">{districtName} 전지역 30분 도착 보장</p>
+
+        {dongs.length > 0 && (
+          <div className="bg-[#18181b] border border-amber-500/40 p-6 rounded-3xl mb-10">
+            <h2 className="text-xs text-amber-400 font-black mb-3">✨ {districtName} 세부 동별 출장마사지 선택</h2>
+            <div className="flex flex-wrap gap-2">
+              {dongs.map((dong, idx) => (
+                <Link 
+                  key={idx} 
+                  href={`/${region}/${district}/${encodeURIComponent(dong)}-출장마사지`}
+                  className="bg-black hover:bg-amber-500 hover:text-black text-gray-200 text-xs font-bold px-3 py-2 rounded-xl border border-amber-500/25 transition-all"
+                >
+                  {dong} 출장마사지
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="space-y-6">
           {shops.map((shop) => (
